@@ -1,4 +1,0 @@
-streamlit==1.26.0
-tensorflow
-pillow
-numpy
