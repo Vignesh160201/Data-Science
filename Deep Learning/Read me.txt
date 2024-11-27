@@ -1,1 +1,0 @@
-My first model building in Deep learning by MobileNet model
