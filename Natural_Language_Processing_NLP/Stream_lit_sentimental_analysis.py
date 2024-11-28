@@ -3,7 +3,7 @@ from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 
 # Load the pre-trained model and tokenizer
-MODEL_PATH = "./bert-finetuned"
+MODEL_PATH = "Natural_Language_Processing_NLP/bert-finetuned"
 tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
 model = BertForSequenceClassification.from_pretrained(MODEL_PATH)
 
