@@ -4,12 +4,15 @@ import torch
 import os
 import gdown
 
-file_id_from_drive ="1SPogm0YWHWmVE-Or0ZJ7fDTcZ_8TzB65"
+#file_id_from_drive ="1SPogm0YWHWmVE-Or0ZJ7fDTcZ_8TzB65"
+pytorch_model_file_id=""
+config_file_id=""
+tokenizer_file_id=""
 # Google Drive file IDs for model files
 DRIVE_FILES = {
-    "pytorch_model.bin": file_id_from_drive,
-    "config.json": file_id_from_drive,
-    "tokenizer.json": file_id_from_drive
+    "pytorch_model.bin": pytorch_model_file_id,
+    "config.json": config_file_id,
+    "tokenizer.json": tokenizer_file_id
 }
 
 MODEL_PATH = "./bert-finetuned"
