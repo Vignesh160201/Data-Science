@@ -4,7 +4,7 @@ import torch
 import os
 import gdown
 
-file_id_from_drive ="1aBcD1234567"
+file_id_from_drive ="1SPogm0YWHWmVE-Or0ZJ7fDTcZ_8TzB65"
 # Google Drive file IDs for model files
 DRIVE_FILES = {
     "pytorch_model.bin": file_id_from_drive,
