@@ -34,6 +34,7 @@ if st.button("Load Folder and Predict"):
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                 zip_ref.extractall(extract_dir)
             st.success("Folder downloaded and extracted successfully!")
+            st.write(f"Files in model directory: {os.listdir(extract_dir)}")
 
             # Load BERT model and tokenizer
             st.write("Loading BERT tokenizer and model...")
