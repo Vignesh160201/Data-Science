@@ -5,7 +5,7 @@ import numpy as np
 
 # Load the saved model
 #MODEL_PATH = 'C:/Users/Vignesh/Downloads/SRM/Sem/Deep Learning/mobilenetv2_beans_model.keras'
-Model_PATH='Deep_Learning/model/mobilenetv2_beans_model.keras'
+Model_PATH='Semester_3/Deep_Learning/model/mobilenetv2_beans_model.keras'
 model = load_model(MODEL_PATH)
 
 # Define the class names (replace with your actual class names)
