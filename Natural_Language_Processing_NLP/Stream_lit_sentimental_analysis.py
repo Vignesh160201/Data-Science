@@ -15,7 +15,7 @@ drive_link = st.text_input("Enter Google Drive Shareable Link to Zipped Folder:"
 
 st.write("Enter a product review to predict its sentiment.")
 # Text input for predictions
-user_text = st.text_area("Enter text for classification:")
+user_text = st.text_area("")
 
 
 # Button to process
