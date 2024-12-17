@@ -44,4 +44,19 @@ if st.button("Load Folder and Predict"):
             # Perform prediction
             if user_text.strip():
                 st.write("Performing text classification...")
-                inputs = tokenizer(us
+                inputs = tokenizer(user_text, return_tensors="pt", truncation=True, padding=True, max_length=512)
+                with torch.no_grad():
+                    outputs = model(**inputs)
+                    prediction = torch.argmax(outputs.logits, dim=1).item()
+
+                st.success(f"Predicted Class: {prediction}")
+            else:
+                st.warning("Please enter some text to classify.")
+
+            # Cleanup
+            os.remove(zip_path)
+
+        except Exception as e:
+            st.error(f"Error: {e}")
+    else:
+        st.warning("Please enter a valid Google Drive shareable link.")
