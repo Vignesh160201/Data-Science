@@ -1,64 +1,47 @@
 import streamlit as st
 import gdown
 import os
-import torch
+import zipfile
 from transformers import BertTokenizer, BertForSequenceClassification
+import torch
 
 # Title
-st.title("BERT Model for Text Classification")
-st.write("Load a BERT model and tokenizer from Google Drive to perform text classification.")
+st.title("Access Entire Folder from Google Drive")
+st.write("Provide a Google Drive link to a zipped folder and use BERT for predictions.")
 
-# Input for Google Drive link
-drive_link = st.text_input("Enter Google Drive Shareable Link to the Model Folder:")
+# Input for Google Drive shareable link
+drive_link = st.text_input("Enter Google Drive Shareable Link to Zipped Folder:")
 
-# Text input for classification
-user_text = st.text_area("Enter text for classification:", "")
+# Text input for predictions
+user_text = st.text_area("Enter text for classification:")
 
-# Button to load model and predict
-if st.button("Load Model and Predict"):
+# Button to process
+if st.button("Load Folder and Predict"):
     if drive_link:
         try:
-            # Extract file ID from the Google Drive link
+            # Extract file ID
             file_id = drive_link.split('/d/')[1].split('/')[0]
             file_url = f"https://drive.google.com/uc?id={file_id}"
-            
-            # Create directory to store the model files
-            model_dir = "bert_model"
-            os.makedirs(model_dir, exist_ok=True)
 
-            # Download the BERT model folder as a ZIP file
-            st.write("Downloading the model files, please wait...")
-            output_zip = "bert_model.zip"
-            gdown.download(file_url, output_zip, quiet=False)
+            # Download the ZIP file
+            zip_path = "model_folder.zip"
+            st.write("Downloading the zipped folder...")
+            gdown.download(file_url, zip_path, quiet=False)
 
-            # Unzip the model folder
-            import zipfile
-            with zipfile.ZipFile(output_zip, 'r') as zip_ref:
-                zip_ref.extractall(model_dir)
-            st.success("Model downloaded and extracted successfully!")
+            # Extract ZIP file
+            st.write("Extracting files...")
+            extract_dir = "model_folder"
+            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                zip_ref.extractall(extract_dir)
+            st.success("Folder downloaded and extracted successfully!")
 
-            # Load the tokenizer and model
+            # Load BERT model and tokenizer
             st.write("Loading BERT tokenizer and model...")
-            tokenizer = BertTokenizer.from_pretrained(model_dir)
-            model = BertForSequenceClassification.from_pretrained(model_dir)
+            tokenizer = BertTokenizer.from_pretrained(extract_dir)
+            model = BertForSequenceClassification.from_pretrained(extract_dir)
             st.success("Model and tokenizer loaded successfully!")
 
-            # Clean up ZIP file
-            os.remove(output_zip)
-
-            # Make predictions
+            # Perform prediction
             if user_text.strip():
                 st.write("Performing text classification...")
-                inputs = tokenizer(user_text, return_tensors="pt", padding=True, truncation=True, max_length=512)
-                with torch.no_grad():
-                    outputs = model(**inputs)
-                    predictions = torch.argmax(outputs.logits, dim=1).item()
-                
-                st.success(f"Predicted Class: {predictions}")
-            else:
-                st.warning("Please enter some text for classification.")
-
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
-    else:
-        st.warning("Please enter a valid Google Drive shareable link.")
+                inputs = tokenizer(us
