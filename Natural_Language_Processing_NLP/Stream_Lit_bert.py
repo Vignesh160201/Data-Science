@@ -4,16 +4,19 @@ import os
 import zipfile
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
+# Streamlit App Layout
 
 # Title
-st.title("Access Entire Folder from Google Drive")
-st.write("Provide a Google Drive link to a zipped folder and use BERT for predictions.")
+st.title("Sentiment Analysis App")
+st.write("Provide a Google Drive link for Bert model.")
 
 # Input for Google Drive shareable link
 drive_link = st.text_input("Enter Google Drive Shareable Link to Zipped Folder:")
 
+st.write("Enter a product review to predict its sentiment.")
 # Text input for predictions
 user_text = st.text_area("Enter text for classification:")
+
 
 # Button to process
 if st.button("Load Folder and Predict"):
@@ -50,9 +53,13 @@ if st.button("Load Folder and Predict"):
                     outputs = model(**inputs)
                     prediction = torch.argmax(outputs.logits, dim=1).item()
 
-                st.success(f"Predicted Class: {prediction}")
+                #st.success(f"Predicted Class: {prediction}")
+                sentiment_map = {0: "Negative", 1: "Neutral", 2: "Positive"}
+                st.subheader(f"Predicted Sentiment: {sentiment}")
+                
+                
             else:
-                st.warning("Please enter some text to classify.")
+                st.error("Please enter a review to analyze.")
 
             # Cleanup
             os.remove(zip_path)
@@ -61,3 +68,7 @@ if st.button("Load Folder and Predict"):
             st.error(f"Error: {e}")
     else:
         st.warning("Please enter a valid Google Drive shareable link.")
+
+# Footer
+st.write("---")
+st.write("Built with [Streamlit](https://streamlit.io/) and Transformers.")
