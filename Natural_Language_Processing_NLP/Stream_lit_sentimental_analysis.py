@@ -28,7 +28,7 @@ if st.button("Load Folder and Predict"):
 
             # Download the ZIP file
             zip_path = "bert-finetuned.zip"
-            #st.write("Downloading the zipped folder...")
+            st.write("Downloading the zipped folder...")
             gdown.download(file_url, zip_path, quiet=False)
 
             # Extract ZIP file
