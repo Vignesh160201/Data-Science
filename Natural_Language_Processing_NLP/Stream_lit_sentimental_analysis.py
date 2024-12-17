@@ -28,11 +28,11 @@ if st.button("Load Folder and Predict"):
 
             # Download the ZIP file
             zip_path = "bert-finetuned.zip"
-            st.write("Downloading the zipped folder...")
+            #st.write("Downloading the zipped folder...")
             gdown.download(file_url, zip_path, quiet=False)
 
             # Extract ZIP file
-            st.write("Extracting files...")
+            #st.write("Extracting files...")
             extract_dir = "bert-finetuned"
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                 zip_ref.extractall(extract_dir)
@@ -40,7 +40,7 @@ if st.button("Load Folder and Predict"):
             #st.write(f"Files in model directory: {os.listdir(extract_dir)}")
 
             # Load BERT model and tokenizer
-            st.write("Loading BERT tokenizer and model...")
+            #st.write("Loading BERT tokenizer and model...")
             tokenizer = BertTokenizer.from_pretrained(extract_dir)
             model = BertForSequenceClassification.from_pretrained(extract_dir)
             st.success(" Bert Model and tokenizer loaded successfully!")
