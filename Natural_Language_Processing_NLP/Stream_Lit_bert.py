@@ -24,13 +24,13 @@ if st.button("Load Folder and Predict"):
             file_url = f"https://drive.google.com/uc?id={file_id}"
 
             # Download the ZIP file
-            zip_path = "model_folder.zip"
+            zip_path = "bert-finetuned.zip"
             st.write("Downloading the zipped folder...")
             gdown.download(file_url, zip_path, quiet=False)
 
             # Extract ZIP file
             st.write("Extracting files...")
-            extract_dir = "model_folder"
+            extract_dir = "bert-finetuned"
             with zipfile.ZipFile(zip_path, 'r') as zip_ref:
                 zip_ref.extractall(extract_dir)
             st.success("Folder downloaded and extracted successfully!")
