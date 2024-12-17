@@ -55,7 +55,7 @@ if st.button("Load Folder and Predict"):
 
                 #st.success(f"Predicted Class: {prediction}")
                 sentiment_map = {0: "Negative", 1: "Neutral", 2: "Positive"}
-                st.subheader(f"Predicted Sentiment: {sentiment}")
+                st.subheader(f"Predicted Sentiment: {sentiment_map[prediction]}")
                 
                 
             else:
