@@ -3,9 +3,17 @@ from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 
 # Load the pre-trained model and tokenizer
-MODEL_PATH = "Natural_Language_Processing_NLP/bert-finetuned/"
-tokenizer = BertTokenizer.from_pretrained(MODEL_PATH)
-model = BertForSequenceClassification.from_pretrained(MODEL_PATH)
+from google.colab import drive
+
+# Mount Google Drive
+drive.mount('/content/drive')
+file_path = '/content/drive/My Drive/bert-uncased-model-NLP'
+# Access files
+print("Drive mounted successfully!")
+
+#MODEL_PATH = "Natural_Language_Processing_NLP/bert-finetuned/"
+tokenizer = BertTokenizer.from_pretrained(file_path)
+model = BertForSequenceClassification.from_pretrained(file_path)
 
 # Function to predict sentiment
 def predict_sentiment(text):
