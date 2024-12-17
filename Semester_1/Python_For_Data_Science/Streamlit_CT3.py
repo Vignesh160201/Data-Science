@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 @st.cache_data
 def load_data():
 # Load data
-    df = pd.read_csv('Python_For_Data_Science/Loan_Sanction_DataSet.csv').drop(['Loan_ID'], axis=1)
+    df = pd.read_csv('Semester_1/Python_For_Data_Science/Loan_Sanction_DataSet.csv').drop(['Loan_ID'], axis=1)
     return df
 
 def univariant_graph(feature,graph_type,color):
