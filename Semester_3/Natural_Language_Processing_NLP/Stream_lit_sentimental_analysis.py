@@ -8,10 +8,12 @@ import torch
 
 # Title
 st.title("Sentiment Analysis App")
-st.write("Provide a Google Drive link for Bert model.")
+st.write("")
+#st.write("Provide a Google Drive link for Bert model.")
 
 # Input for Google Drive shareable link
-drive_link = st.text_input("Enter Google Drive Shareable Link to Zipped Folder:")
+#drive_link = st.text_input("Enter Google Drive Shareable Link to Zipped Folder:")
+drive_link="https://drive.google.com/file/d/1RFTw61AwmwtE4QcLfxQvkV7o4tm2nUkt/view?usp=sharing"
 
 st.write("Enter a product review to predict its sentiment.")
 # Text input for predictions
